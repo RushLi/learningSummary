@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		
+		<!-- 启用注解 -->
+		<context:annotation-config></context:annotation-config>
+		<!-- 自动扫描指定包下面的注解类 -->
+		<context:component-scan base-package="aop"></context:component-scan>
+		<!-- 启用aspectj的注解功能 -->
+		<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	<bean id="bir" class="java.util.Date"></bean>
+	<!-- 属性注入 -->
+	<bean id="emps" class="bean.emp">
+		<property name="eid" value="1"></property>
+		<property name="ename" value="大李"></property>
+		<property name="birthday" ref="bir"></property>
+		<property name="did" value="101"></property>
+	</bean>
+	<!-- spEl注入 -->
+	<bean id="depts" class="bean.dept">
+		<property name="did" value="#{emps.did}"></property>
+		<property name="dname" value="#{'市场部'}"></property>
+	</bean>
+	<!-- 集合注入 -->
+		<!-- <bean id="collectionBean" class="">
+		注入List集合
+		<property name="list">
+			<list>
+				<value>童童</value>
+				<value>小凤</value>
+			</list>
+		</property>
+		
+		注入set集合
+		<property name="set">
+			<set>
+				<value>杜宏</value>
+				<value>如花</value>
+			</set>
+		</property>
+		
+		注入map集合
+		<property name="map">
+			<map>
+				<entry key="刚刚" value="111"/>
+				<entry key="娇娇" value="333"/>
+			</map>
+		</property>
+		
+		<property name="properties">
+			<props>
+				<prop key="username">root</prop>
+				<prop key="password">123</prop>
+			</props>
+		</property>
+	</bean> -->
+	<bean id="stu" class="bean.student">
+		<property name="sid" value="333"></property>
+		<property name="sname" value="社会龚"></property>
+	</bean>
+</beans>

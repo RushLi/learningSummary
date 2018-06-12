@@ -1,0 +1,129 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.xq</groupId>
+  <artifactId>springAll</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <properties>
+  	<spring-version>4.3.7.RELEASE</spring-version>
+  </properties>
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-beans</artifactId>
+  		<version>${spring-version}</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-context</artifactId>
+  		<version>${spring-version}</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-core</artifactId>
+  		<version>${spring-version}</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-expression</artifactId>
+  		<version>${spring-version}</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>commons-logging</groupId>
+  		<artifactId>commons-logging</artifactId>
+  		<version>1.2</version>
+  	</dependency>
+    <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjrt -->  
+    <dependency>  
+      <groupId>org.aspectj</groupId>  
+      <artifactId>aspectjrt</artifactId>  
+      <version>1.8.9</version>  
+    </dependency>  
+    <dependency>  
+      <groupId>org.aspectj</groupId>  
+      <artifactId>aspectjweaver</artifactId>  
+      <version>1.7.4</version>  
+    </dependency>  
+  	<!-- https://mvnrepository.com/artifact/cglib/cglib -->
+	<dependency>
+	    <groupId>cglib</groupId>
+	    <artifactId>cglib</artifactId>
+	    <version>3.1</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/aopalliance/aopalliance -->
+	<dependency>
+	    <groupId>aopalliance</groupId>
+	    <artifactId>aopalliance</artifactId>
+	    <version>1.0</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-aspects -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-aspects</artifactId>
+	    <version>${spring-version}</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-aop -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-aop</artifactId>
+	    <version>${spring-version}</version>
+	</dependency>
+  </dependencies>
+  
+  <!-- 添加maven的插件 -->
+  <build>
+  	<defaultGoal>compile</defaultGoal>
+    <plugins>
+      <plugin>  
+          <groupId>org.apache.maven.plugins</groupId>  
+          <artifactId>maven-compiler-plugin</artifactId>  
+          <version>3.2</version>
+          <configuration>  
+			  <!--源码的Java版本-->  
+              <source>1.8</source>  
+              <!--运行环境的Java版本-->  
+              <target>1.8</target>  
+              <encoding>UTF-8</encoding>
+          </configuration>  
+       </plugin> 
+       <!-- 配置Tomcat插件 -->
+		<plugin>
+			<groupId>org.apache.tomcat.maven</groupId>
+			<artifactId>tomcat7-maven-plugin</artifactId>
+			<version>2.2</version>
+			<configuration>
+				<port>8088</port>
+				<warSourceDirectory>WebContent</warSourceDirectory>
+				<uriEncoding>UTF-8</uriEncoding>
+			</configuration>
+		</plugin>
+			<!-- war包插件 -->
+			<plugin>  
+		        <groupId>org.apache.maven.plugins</groupId>  
+		        <artifactId>maven-war-plugin</artifactId>  
+		        <version>2.6</version>  
+		        <configuration>  
+		            <warSourceDirectory>WebContent</warSourceDirectory>
+		        </configuration>  
+		    </plugin>  
+     </plugins>
+     
+     <!-- 识别src/main/java下的所有xml或者properties文件 -->
+     <resources>
+     	<resource>
+     		<directory>src/main/java</directory>
+     		<includes>
+     			<include>**/*.xml</include>
+     			<include>**/*.properties</include>
+     		</includes>
+     	</resource>
+     	<resource>
+     		<directory>src/main/resources</directory>
+     		<includes>
+     			<include>**/*.xml</include>
+     			<include>**/*.properties</include>
+     		</includes>
+     	</resource>
+     </resources>
+  </build>
+</project>
